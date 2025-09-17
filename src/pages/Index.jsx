@@ -58,33 +58,38 @@ const Index = () => {
       {/* 主要内容区域 */}
       <div className="max-w-[1600px] mx-auto p-8">
         <div className="grid grid-cols-1 lg:grid-cols-[400px_1fr] gap-8">
-          {/* 左侧编辑区域 - 宽度增加到400px */}
-          <div className="space-y-6">
-            <ImageUploader onImageUpload={handleImageUpload} />
-            
-            <Tabs defaultValue="background" className="w-full">
-              <TabsList className="grid w-full grid-cols-3 bg-white/40 backdrop-blur-sm">
-                <TabsTrigger value="background">背景</TabsTrigger>
-                <TabsTrigger value="sellingPoint">卖点</TabsTrigger>
-                <TabsTrigger value="marketingBox">营销</TabsTrigger>
-              </TabsList>
+          {/* 左侧编辑区域 - 包在Card中 */}
+          <Card className="bg-white/80 backdrop-blur-[2px] border-0">
+            <CardHeader>
+              <CardTitle className="text-lg font-medium">编辑区域</CardTitle>
+            </CardHeader>
+            <div className="p-6 space-y-6">
+              <ImageUploader onImageUpload={handleImageUpload} />
               
-              <TabsContent value="background">
-                <BackgroundSelector
-                  onBackgroundSelect={handleBackgroundSelect}
-                  selectedBackground={selectedBackground}
-                />
-              </TabsContent>
-              
-              <TabsContent value="sellingPoint">
-                <SellingPointSelector onSettingsChange={handleSettingsChange} />
-              </TabsContent>
-              
-              <TabsContent value="marketingBox">
-                <MarketingBoxSelector onSettingsChange={handleSettingsChange} />
-              </TabsContent>
-            </Tabs>
-          </div>
+              <Tabs defaultValue="background" className="w-full">
+                <TabsList className="grid w-full grid-cols-3 bg-white/40 backdrop-blur-sm">
+                  <TabsTrigger value="background">背景</TabsTrigger>
+                  <TabsTrigger value="sellingPoint">卖点</TabsTrigger>
+                  <TabsTrigger value="marketingBox">营销</TabsTrigger>
+                </TabsList>
+                
+                <TabsContent value="background">
+                  <BackgroundSelector
+                    onBackgroundSelect={handleBackgroundSelect}
+                    selectedBackground={selectedBackground}
+                  />
+                </TabsContent>
+                
+                <TabsContent value="sellingPoint">
+                  <SellingPointSelector onSettingsChange={handleSettingsChange} />
+                </TabsContent>
+                
+                <TabsContent value="marketingBox">
+                  <MarketingBoxSelector onSettingsChange={handleSettingsChange} />
+                </TabsContent>
+              </Tabs>
+            </div>
+          </Card>
           
           {/* 右侧预览区域 */}
           <Card className="bg-white/80 backdrop-blur-[2px] border-0">
