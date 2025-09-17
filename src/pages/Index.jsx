@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import ImageUploader from '../components/ImageEditor/ImageUploader';
 import BackgroundSelector from '../components/ImageEditor/BackgroundSelector';
+import SellingPointSelector from '../components/ImageEditor/SellingPointSelector';
+import MarketingBoxSelector from '../components/ImageEditor/MarketingBoxSelector';
 import ResultPreview from '../components/ImageEditor/ResultPreview';
 
 const Index = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [selectedBackground, setSelectedBackground] = useState(null);
+  const [settings, setSettings] = useState({
+    sellingPoint: {},
+    marketingBox: {}
+  });
 
   const handleImageUpload = (image) => {
     setUploadedImage(image);
@@ -15,9 +21,16 @@ const Index = () => {
     setSelectedBackground(backgroundUrl);
   };
 
+  const handleSettingsChange = (section, updates) => {
+    setSettings(prev => ({
+      ...prev,
+      [section]: { ...prev[section], ...updates }
+    }));
+  };
+
   const handleRegenerate = () => {
     // 重新生成图片的逻辑
-    console.log('Regenerating with background:', selectedBackground);
+    console.log('Regenerating with settings:', { selectedBackground, settings });
   };
 
   return (
@@ -32,6 +45,8 @@ const Index = () => {
               onBackgroundSelect={handleBackgroundSelect}
               selectedBackground={selectedBackground}
             />
+            <SellingPointSelector onSettingsChange={handleSettingsChange} />
+            <MarketingBoxSelector onSettingsChange={handleSettingsChange} />
           </div>
           
           {/* 右侧预览区域 */}
@@ -39,6 +54,7 @@ const Index = () => {
             <ResultPreview
               image={uploadedImage}
               background={selectedBackground}
+              settings={settings}
               onRegenerate={handleRegenerate}
             />
           </div>
