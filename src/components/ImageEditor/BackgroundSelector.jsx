@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -36,10 +36,7 @@ const BackgroundSelector = ({ onBackgroundSelect, selectedBackground }) => {
 
   return (
     <Card className="w-full bg-white/30 backdrop-blur-md border-0 shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-lg">加背景图</CardTitle>
-      </CardHeader>
-      <CardContent>
+      <CardContent className="p-6">
         <div className="space-y-4">
           {/* 分类选择 */}
           <div className="flex flex-wrap gap-2">
