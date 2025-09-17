@@ -1,29 +1,34 @@
 import React, { useState } from 'react';
 import ImageUploader from '../components/ImageEditor/ImageUploader';
-import BackgroundSelector from '../components/ImageEditor/BackgroundSelector';
-import TextTemplateSelector from '../components/ImageEditor/TextTemplateSelector';
+import TemplateSelector from '../components/ImageEditor/TemplateSelector';
 import ResultPreview from '../components/ImageEditor/ResultPreview';
 
 const Index = () => {
-  const [generatedImage, setGeneratedImage] = useState(null);
+  const [uploadedImage, setUploadedImage] = useState(null);
+  const [selectedTemplate, setSelectedTemplate] = useState(null);
+  const [templateSettings, setTemplateSettings] = useState({});
 
   const handleImageUpload = (image) => {
-    setGeneratedImage(image);
+    setUploadedImage(image);
   };
 
-  const handleBackgroundSelect = (background) => {
-    // 这里可以添加背景处理逻辑
-    console.log('Selected background:', background);
+  const handleTemplateSelect = (template) => {
+    setSelectedTemplate(template);
   };
 
-  const handleTextChange = (type, text) => {
-    // 这里可以添加文本处理逻辑
-    console.log('Text changed:', type, text);
+  const handleSettingsChange = (type, settings) => {
+    setTemplateSettings(prev => ({
+      ...prev,
+      [type]: {
+        ...(prev[type] || {}),
+        ...settings
+      }
+    }));
   };
 
   const handleRegenerate = () => {
-    // 这里可以添加重新生成逻辑
-    console.log('Regenerating image...');
+    // 重新生成图片的逻辑
+    console.log('Regenerating with settings:', templateSettings);
   };
 
   return (
@@ -34,14 +39,16 @@ const Index = () => {
           {/* 左侧编辑区域 */}
           <div className="space-y-6">
             <ImageUploader onImageUpload={handleImageUpload} />
-            <BackgroundSelector onBackgroundSelect={handleBackgroundSelect} />
-            <TextTemplateSelector onTextChange={handleTextChange} />
+            <TemplateSelector
+              onTemplateSelect={handleTemplateSelect}
+              onSettingsChange={handleSettingsChange}
+            />
           </div>
           
           {/* 右侧预览区域 */}
           <div className="h-full">
             <ResultPreview
-              image={generatedImage}
+              image={uploadedImage}
               onRegenerate={handleRegenerate}
             />
           </div>
