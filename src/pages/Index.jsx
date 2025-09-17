@@ -57,8 +57,8 @@ const Index = () => {
 
       {/* 主要内容区域 */}
       <div className="max-w-[1600px] mx-auto p-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-8">
-          {/* 左侧编辑区域 - 宽度减小到300px */}
+        <div className="grid grid-cols-1 lg:grid-cols-[400px_1fr] gap-8">
+          {/* 左侧编辑区域 - 宽度增加到400px */}
           <div className="space-y-6">
             <ImageUploader onImageUpload={handleImageUpload} />
             
@@ -86,8 +86,8 @@ const Index = () => {
             </Tabs>
           </div>
           
-          {/* 右侧预览区域 - 使用Card包裹并添加虚线分隔 */}
-          <Card className="p-6 bg-white/80 backdrop-blur-[2px]">
+          {/* 右侧预览区域 - 移除Card的border */}
+          <Card className="p-6 bg-white/80 backdrop-blur-[2px] border-0">
             <div className="grid grid-cols-2 divide-x-2 divide-dashed divide-gray-200">
               {/* 左侧：生成图片预览 */}
               <div className="pr-6">
