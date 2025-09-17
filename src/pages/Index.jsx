@@ -57,8 +57,8 @@ const Index = () => {
       </nav>
 
       {/* 主要内容区域 */}
-      <div className="mx-auto px-6 py-6">
-        <div className="grid grid-cols-[58fr_24px_108fr]">
+      <div className="container mx-auto px-6 py-6">
+        <div className="grid grid-cols-[1fr_24px_1.2fr] gap-6">
           {/* 左侧编辑区域 */}
           <Card className="bg-white/80 backdrop-blur-[2px] border-0">
             <CardHeader>
@@ -92,13 +92,14 @@ const Index = () => {
             </div>
           </Card>
 
-          {/* 间距由 grid 的 gap 控制 */}
+          {/* 中间间距 */}
+          <div></div>
           
           {/* 右侧预览区域 */}
-          <Card className="bg-white/80 backdrop-blur-[2px] border-0 col-span-1">
-            <div className="grid grid-cols-[3fr_2fr] divide-x-2 divide-dashed divide-gray-200">
+          <Card className="bg-white/80 backdrop-blur-[2px] border-0">
+            <div className="grid grid-cols-[1.5fr_1fr] h-full">
               {/* 左侧：生成图片预览 */}
-              <div className="p-6">
+              <div className="p-6 border-r border-dashed border-gray-200">
                 <CardHeader className="px-0">
                   <CardTitle className="text-lg font-medium">生成图片预览</CardTitle>
                 </CardHeader>
@@ -116,9 +117,11 @@ const Index = () => {
                 <CardHeader className="px-0">
                   <CardTitle className="text-lg font-medium">商品详情预览</CardTitle>
                 </CardHeader>
-                <PhoneFrame>
-                  <ProductPreview image={uploadedImage} />
-                </PhoneFrame>
+                <div className="mt-4">
+                  <PhoneFrame>
+                    <ProductPreview image={uploadedImage} />
+                  </PhoneFrame>
+                </div>
               </div>
             </div>
           </Card>
