@@ -1,16 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Download, RefreshCw } from 'lucide-react';
+import { Download, RefreshCw, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProductPreview from './ProductPreview';
+import { cn } from "@/lib/utils";
 
 const ResultPreview = ({ image, onRegenerate }) => {
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  // 生成4张不同的图片URL
+  const generatedImages = [
+    'https://nocode.meituan.com/photo/search?keyword=medicine,health,product&width=400&height=400',
+    'https://nocode.meituan.com/photo/search?keyword=pharmacy,wellness,supplement&width=400&height=400',
+    'https://nocode.meituan.com/photo/search?keyword=healthcare,natural,organic&width=400&height=400',
+    'https://nocode.meituan.com/photo/search?keyword=medical,treatment,care&width=400&height=400'
+  ];
+
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = image;
-    link.download = 'generated-image.png';
+    link.href = generatedImages[selectedImageIndex];
+    link.download = `generated-image-${selectedImageIndex + 1}.png`;
     link.click();
+  };
+
+  const handlePrevImage = () => {
+    setSelectedImageIndex((prev) => (prev > 0 ? prev - 1 : generatedImages.length - 1));
+  };
+
+  const handleNextImage = () => {
+    setSelectedImageIndex((prev) => (prev < generatedImages.length - 1 ? prev + 1 : 0));
   };
 
   return (
@@ -24,20 +43,59 @@ const ResultPreview = ({ image, onRegenerate }) => {
             </TabsList>
             
             <TabsContent value="image" className="mt-4">
-              <div className="min-h-[400px] rounded-lg overflow-hidden bg-gray-100">
-                {image ? (
-                  <img src={image} alt="预览" className="w-full h-full object-contain" />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-gray-400">
-                    预览区域
+              <div className="space-y-4">
+                {/* 主预览图 */}
+                <div className="relative min-h-[300px] rounded-lg overflow-hidden bg-gray-100">
+                  <img 
+                    src={generatedImages[selectedImageIndex]} 
+                    alt={`预览图 ${selectedImageIndex + 1}`} 
+                    className="w-full h-[300px] object-contain"
+                  />
+                  <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-2">
+                    <Button
+                      variant="secondary"
+                      size="icon"
+                      className="h-8 w-8 rounded-full bg-white/80 hover:bg-white"
+                      onClick={handlePrevImage}
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="secondary"
+                      size="icon"
+                      className="h-8 w-8 rounded-full bg-white/80 hover:bg-white"
+                      onClick={handleNextImage}
+                    >
+                      <ChevronRight className="h-4 w-4" />
+                    </Button>
                   </div>
-                )}
+                </div>
+
+                {/* 缩略图预览 */}
+                <div className="grid grid-cols-4 gap-2">
+                  {generatedImages.map((img, index) => (
+                    <div
+                      key={index}
+                      className={cn(
+                        "cursor-pointer rounded-lg overflow-hidden border-2",
+                        selectedImageIndex === index ? "border-blue-500" : "border-transparent"
+                      )}
+                      onClick={() => setSelectedImageIndex(index)}
+                    >
+                      <img
+                        src={img}
+                        alt={`缩略图 ${index + 1}`}
+                        className="w-full h-20 object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
             </TabsContent>
             
             <TabsContent value="product" className="mt-4">
               <div className="w-[360px] mx-auto">
-                <ProductPreview image={image} />
+                <ProductPreview image={generatedImages[selectedImageIndex]} />
               </div>
             </TabsContent>
           </Tabs>
@@ -54,7 +112,6 @@ const ResultPreview = ({ image, onRegenerate }) => {
             <Button
               onClick={handleDownload}
               className="flex items-center gap-2"
-              disabled={!image}
             >
               <Download className="h-4 w-4" />
               下载图片
