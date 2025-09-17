@@ -17,9 +17,9 @@ const TextTemplateSelector = ({ onTextChange }) => {
       <CardContent>
         <div className="space-y-4">
           <div>
-            <label className="text-sm text-gray-600">商品标题</label>
+            <label className="text-sm text-gray-600">药品品牌</label>
             <Input
-              placeholder="输入商品标题"
+              placeholder="输入药品品牌"
               onChange={(e) => onTextChange('title', e.target.value)}
               className="mt-1"
             />
