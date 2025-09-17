@@ -1,13 +1,14 @@
+
 import ImageUploader from '../components/ImageEditor/ImageUploader';
 import BackgroundSelector from '../components/ImageEditor/BackgroundSelector';
+import { CardHeader, Card, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import SellingPointSelector from '../components/ImageEditor/SellingPointSelector';
 import ProductPreview from '../components/ImageEditor/ProductPreview';
 import React, { useState } from 'react';
 import MarketingBoxSelector from '../components/ImageEditor/MarketingBoxSelector';
 import ResultPreview from '../components/ImageEditor/ResultPreview';
-import { Card, CardHeader, CardTitle } from '@/components/ui/card';
-
+import PhoneFrame from '../components/ImageEditor/PhoneFrame';
 const Index = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [selectedBackground, setSelectedBackground] = useState(null);
@@ -113,9 +114,9 @@ const Index = () => {
                 <CardHeader className="px-0">
                   <CardTitle className="text-lg font-medium">商品详情预览</CardTitle>
                 </CardHeader>
-                <div className="w-[360px] mx-auto">
+                <PhoneFrame>
                   <ProductPreview image={uploadedImage} />
-                </div>
+                </PhoneFrame>
               </div>
             </div>
           </Card>
