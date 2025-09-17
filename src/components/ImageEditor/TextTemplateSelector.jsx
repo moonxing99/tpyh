@@ -1,9 +1,14 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 
 const TextTemplateSelector = ({ onTextChange }) => {
+  const handleSymptomChange = (index, value) => {
+    // 限制输入5个字
+    const limitedValue = value.slice(0, 5);
+    onTextChange(`symptom${index + 1}`, limitedValue);
+  };
+
   return (
     <Card className="w-full bg-white/30 backdrop-blur-md border-0 shadow-lg mt-4">
       <CardHeader>
@@ -20,12 +25,25 @@ const TextTemplateSelector = ({ onTextChange }) => {
             />
           </div>
           <div>
-            <label className="text-sm text-gray-600">商品描述</label>
-            <Textarea
-              placeholder="输入商品描述"
-              onChange={(e) => onTextChange('description', e.target.value)}
-              className="mt-1"
-            />
+            <label className="text-sm text-gray-600">主治症状</label>
+            <div className="grid grid-cols-2 gap-4 mt-1">
+              <div>
+                <Input
+                  placeholder="症状1（限5字）"
+                  maxLength={5}
+                  onChange={(e) => handleSymptomChange(0, e.target.value)}
+                  className="mt-1"
+                />
+              </div>
+              <div>
+                <Input
+                  placeholder="症状2（限5字）"
+                  maxLength={5}
+                  onChange={(e) => handleSymptomChange(1, e.target.value)}
+                  className="mt-1"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </CardContent>
