@@ -40,7 +40,7 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50/50 to-pink-50">
       {/* 顶部导航栏 */}
       <nav className="bg-white/60 backdrop-blur-sm border-b border-gray-100/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto px-4">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <img 
@@ -57,14 +57,14 @@ const Index = () => {
       </nav>
 
       {/* 主要内容区域 */}
-      <div className="max-w-[1600px] mx-auto p-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_800px] gap-8">
-          {/* 左侧编辑区域 - 包在Card中 */}
-          <Card className="bg-white/80 backdrop-blur-[2px] border-0">
+      <div className="mx-auto p-4">
+        <div className="grid grid-cols-[460px_20px_872px]">
+          {/* 左侧编辑区域 */}
+          <Card className="bg-white/80 backdrop-blur-[2px] border-0 w-[460px]">
             <CardHeader>
               <CardTitle className="text-lg font-medium">编辑区域</CardTitle>
             </CardHeader>
-            <div className="p-6 space-y-6">
+            <div className="p-4 space-y-4">
               <ImageUploader onImageUpload={handleImageUpload} />
               
               <Tabs defaultValue="background" className="w-full">
@@ -91,10 +91,13 @@ const Index = () => {
               </Tabs>
             </div>
           </Card>
+
+          {/* 间距 */}
+          <div className="w-[20px]"></div>
           
           {/* 右侧预览区域 */}
-          <Card className="bg-white/80 backdrop-blur-[2px] border-0">
-            <div className="grid grid-cols-[1.2fr_0.8fr] divide-x-2 divide-dashed divide-gray-200">
+          <Card className="bg-white/80 backdrop-blur-[2px] border-0 w-[872px]">
+            <div className="grid grid-cols-[520px_352px] divide-x-2 divide-dashed divide-gray-200">
               {/* 左侧：生成图片预览 */}
               <div className="p-6">
                 <CardHeader className="px-0">
