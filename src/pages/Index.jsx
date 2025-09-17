@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ImageUploader from '../components/ImageEditor/ImageUploader';
 import BackgroundSelector from '../components/ImageEditor/BackgroundSelector';
 import SellingPointSelector from '../components/ImageEditor/SellingPointSelector';
@@ -41,12 +42,29 @@ const Index = () => {
           {/* 左侧编辑区域 */}
           <div className="space-y-6">
             <ImageUploader onImageUpload={handleImageUpload} />
-            <BackgroundSelector
-              onBackgroundSelect={handleBackgroundSelect}
-              selectedBackground={selectedBackground}
-            />
-            <SellingPointSelector onSettingsChange={handleSettingsChange} />
-            <MarketingBoxSelector onSettingsChange={handleSettingsChange} />
+            
+            <Tabs defaultValue="background" className="w-full">
+              <TabsList className="grid w-full grid-cols-3">
+                <TabsTrigger value="background">加背景图</TabsTrigger>
+                <TabsTrigger value="sellingPoint">加卖点</TabsTrigger>
+                <TabsTrigger value="marketingBox">加营销框</TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="background">
+                <BackgroundSelector
+                  onBackgroundSelect={handleBackgroundSelect}
+                  selectedBackground={selectedBackground}
+                />
+              </TabsContent>
+              
+              <TabsContent value="sellingPoint">
+                <SellingPointSelector onSettingsChange={handleSettingsChange} />
+              </TabsContent>
+              
+              <TabsContent value="marketingBox">
+                <MarketingBoxSelector onSettingsChange={handleSettingsChange} />
+              </TabsContent>
+            </Tabs>
           </div>
           
           {/* 右侧预览区域 */}
