@@ -40,7 +40,7 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50/50 to-pink-50">
       {/* 顶部导航栏 */}
       <nav className="bg-white/60 backdrop-blur-sm border-b border-gray-100/20">
-        <div className="mx-auto px-4">
+        <div className="mx-auto px-6">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <img 
@@ -57,10 +57,10 @@ const Index = () => {
       </nav>
 
       {/* 主要内容区域 */}
-      <div className="mx-auto p-4">
-        <div className="grid grid-cols-[460px_20px_872px]">
+      <div className="mx-auto px-6 py-6">
+        <div className="grid grid-cols-[58fr_24px_108fr]">
           {/* 左侧编辑区域 */}
-          <Card className="bg-white/80 backdrop-blur-[2px] border-0 w-[460px]">
+          <Card className="bg-white/80 backdrop-blur-[2px] border-0">
             <CardHeader>
               <CardTitle className="text-lg font-medium">编辑区域</CardTitle>
             </CardHeader>
@@ -92,12 +92,11 @@ const Index = () => {
             </div>
           </Card>
 
-          {/* 间距 */}
-          <div className="w-[20px]"></div>
+          {/* 间距由 grid 的 gap 控制 */}
           
           {/* 右侧预览区域 */}
-          <Card className="bg-white/80 backdrop-blur-[2px] border-0 w-[872px]">
-            <div className="grid grid-cols-[520px_352px] divide-x-2 divide-dashed divide-gray-200">
+          <Card className="bg-white/80 backdrop-blur-[2px] border-0 col-span-1">
+            <div className="grid grid-cols-[3fr_2fr] divide-x-2 divide-dashed divide-gray-200">
               {/* 左侧：生成图片预览 */}
               <div className="p-6">
                 <CardHeader className="px-0">
