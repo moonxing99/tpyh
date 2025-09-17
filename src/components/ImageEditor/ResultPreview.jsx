@@ -36,7 +36,9 @@ const ResultPreview = ({ image, onRegenerate }) => {
             </TabsContent>
             
             <TabsContent value="product" className="mt-4">
-              <ProductPreview image={image} />
+              <div className="w-[360px] mx-auto">
+                <ProductPreview image={image} />
+              </div>
             </TabsContent>
           </Tabs>
 
