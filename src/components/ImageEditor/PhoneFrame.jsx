@@ -4,7 +4,7 @@ const PhoneFrame = ({ children }) => {
   return (
     <div className="relative mx-auto" style={{ maxWidth: '400px' }}>
       {/* 手机外壳 */}
-      <div className="relative mx-auto bg-black rounded-[50px] p-3" style={{ maxWidth: '380px' }}>
+      <div className="relative mx-auto bg-black rounded-[50px] p-3" style={{ width: '324px' }}>
         {/* 刘海区域 */}
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[150px] h-[30px] bg-black rounded-b-[20px] flex items-center justify-center z-10">
           <div className="w-[80px] h-[10px] bg-black rounded-[20px] relative flex items-center">
@@ -14,7 +14,7 @@ const PhoneFrame = ({ children }) => {
         </div>
         
         {/* 内容区域 */}
-        <div className="relative bg-white rounded-[40px] overflow-hidden">
+        <div className="relative bg-white rounded-[40px] overflow-hidden" style={{ height: '702px' }}>
           {/* 状态栏 */}
           <div className="absolute top-0 w-full h-[48px] bg-white z-10 flex items-center justify-between px-6">
             <div className="text-sm">9:41</div>
