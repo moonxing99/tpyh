@@ -5,6 +5,7 @@ import BackgroundSelector from '../components/ImageEditor/BackgroundSelector';
 import SellingPointSelector from '../components/ImageEditor/SellingPointSelector';
 import MarketingBoxSelector from '../components/ImageEditor/MarketingBoxSelector';
 import ResultPreview from '../components/ImageEditor/ResultPreview';
+import ProductPreview from '../components/ImageEditor/ProductPreview';
 
 const Index = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
