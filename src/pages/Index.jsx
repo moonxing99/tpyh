@@ -31,20 +31,38 @@ const Index = () => {
   };
 
   const handleRegenerate = () => {
-    // 重新生成图片的逻辑
     console.log('Regenerating with settings:', { selectedBackground, settings });
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-8">
-      <div className="max-w-[1600px] mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-50 to-pink-100">
+      {/* 顶部导航栏 */}
+      <nav className="bg-white/70 backdrop-blur-md border-b border-gray-200/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <img 
+                src="https://nocode.meituan.com/photo/search?keyword=ai,logo,modern&width=32&height=32" 
+                alt="Logo" 
+                className="h-8 w-8"
+              />
+              <span className="ml-2 text-xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                AI 图片生成器
+              </span>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* 主要内容区域 */}
+      <div className="max-w-[1600px] mx-auto p-8">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8">
           {/* 左侧编辑区域 */}
           <div className="space-y-6">
             <ImageUploader onImageUpload={handleImageUpload} />
             
             <Tabs defaultValue="background" className="w-full">
-              <TabsList className="grid w-full grid-cols-3">
+              <TabsList className="grid w-full grid-cols-3 bg-white/50 backdrop-blur-sm">
                 <TabsTrigger value="background">背景</TabsTrigger>
                 <TabsTrigger value="sellingPoint">背景+卖点信息</TabsTrigger>
                 <TabsTrigger value="marketingBox">背景+营销信息</TabsTrigger>
@@ -67,7 +85,7 @@ const Index = () => {
             </Tabs>
           </div>
           
-          {/* 右侧预览区域 - 改为左右布局 */}
+          {/* 右侧预览区域 */}
           <div className="h-full lg:w-[800px]">
             <div className="grid grid-cols-2 gap-8">
               {/* 左侧：生成图片预览 */}
