@@ -36,8 +36,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="max-w-[1600px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8">
           {/* 左侧编辑区域 */}
           <div className="space-y-6">
             <ImageUploader onImageUpload={handleImageUpload} />
@@ -66,14 +66,27 @@ const Index = () => {
             </Tabs>
           </div>
           
-          {/* 右侧预览区域 */}
-          <div className="h-full">
-            <ResultPreview
-              image={uploadedImage}
-              background={selectedBackground}
-              settings={settings}
-              onRegenerate={handleRegenerate}
-            />
+          {/* 右侧预览区域 - 改为左右布局 */}
+          <div className="h-full lg:w-[800px]">
+            <div className="grid grid-cols-2 gap-8">
+              {/* 左侧：生成图片预览 */}
+              <div className="space-y-4">
+                <ResultPreview
+                  image={uploadedImage}
+                  background={selectedBackground}
+                  settings={settings}
+                  onRegenerate={handleRegenerate}
+                  showProductPreview={false}
+                />
+              </div>
+              
+              {/* 右侧：商品详情预览 */}
+              <div className="space-y-4">
+                <div className="w-[360px] mx-auto">
+                  <ProductPreview image={uploadedImage} />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
