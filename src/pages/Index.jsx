@@ -58,73 +58,74 @@ const Index = () => {
 
       {/* 主要内容区域 */}
       <div className="container mx-auto px-6 py-6">
-        <div className="grid grid-cols-[1fr_24px_1.2fr] gap-6">
-          {/* 左侧编辑区域 */}
-          <Card className="bg-white/80 backdrop-blur-[2px] border-0">
-            <CardHeader>
-              <CardTitle className="text-lg font-medium">编辑区域</CardTitle>
-            </CardHeader>
-            <div className="p-4 space-y-4">
-              <ImageUploader onImageUpload={handleImageUpload} />
-              
-              <Tabs defaultValue="background" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 bg-white/40 backdrop-blur-sm">
-                  <TabsTrigger value="background">背景</TabsTrigger>
-                  <TabsTrigger value="sellingPoint">卖点</TabsTrigger>
-                  <TabsTrigger value="marketingBox">营销</TabsTrigger>
-                </TabsList>
+        <div className="flex gap-6">
+          {/* 左侧编辑区域 - 58份宽度 */}
+          <div className="w-[58fr]">
+            <Card className="bg-white/80 backdrop-blur-[2px] border-0">
+              <CardHeader>
+                <CardTitle className="text-lg font-medium">编辑区域</CardTitle>
+              </CardHeader>
+              <div className="p-4 space-y-4">
+                <ImageUploader onImageUpload={handleImageUpload} />
                 
-                <TabsContent value="background">
-                  <BackgroundSelector
-                    onBackgroundSelect={handleBackgroundSelect}
-                    selectedBackground={selectedBackground}
-                  />
-                </TabsContent>
-                
-                <TabsContent value="sellingPoint">
-                  <SellingPointSelector onSettingsChange={handleSettingsChange} />
-                </TabsContent>
-                
-                <TabsContent value="marketingBox">
-                  <MarketingBoxSelector onSettingsChange={handleSettingsChange} />
-                </TabsContent>
-              </Tabs>
-            </div>
-          </Card>
-
-          {/* 中间间距 */}
-          <div></div>
-          
-          {/* 右侧预览区域 */}
-          <Card className="bg-white/80 backdrop-blur-[2px] border-0">
-            <div className="grid grid-cols-[1.5fr_1fr] h-full">
-              {/* 左侧：生成图片预览 */}
-              <div className="p-6 border-r border-dashed border-gray-200">
-                <CardHeader className="px-0">
-                  <CardTitle className="text-lg font-medium">生成图片预览</CardTitle>
-                </CardHeader>
-                <ResultPreview
-                  image={uploadedImage}
-                  background={selectedBackground}
-                  settings={settings}
-                  onRegenerate={handleRegenerate}
-                  showProductPreview={false}
-                />
+                <Tabs defaultValue="background" className="w-full">
+                  <TabsList className="grid w-full grid-cols-3 bg-white/40 backdrop-blur-sm">
+                    <TabsTrigger value="background">背景</TabsTrigger>
+                    <TabsTrigger value="sellingPoint">卖点</TabsTrigger>
+                    <TabsTrigger value="marketingBox">营销</TabsTrigger>
+                  </TabsList>
+                  
+                  <TabsContent value="background">
+                    <BackgroundSelector
+                      onBackgroundSelect={handleBackgroundSelect}
+                      selectedBackground={selectedBackground}
+                    />
+                  </TabsContent>
+                  
+                  <TabsContent value="sellingPoint">
+                    <SellingPointSelector onSettingsChange={handleSettingsChange} />
+                  </TabsContent>
+                  
+                  <TabsContent value="marketingBox">
+                    <MarketingBoxSelector onSettingsChange={handleSettingsChange} />
+                  </TabsContent>
+                </Tabs>
               </div>
-              
-              {/* 右侧：商品详情预览 */}
-              <div className="p-6">
-                <CardHeader className="px-0">
-                  <CardTitle className="text-lg font-medium">商品详情预览</CardTitle>
-                </CardHeader>
-                <div className="mt-4">
-                  <PhoneFrame>
-                    <ProductPreview image={uploadedImage} />
-                  </PhoneFrame>
+            </Card>
+          </div>
+
+          {/* 右侧预览区域 - 108份宽度 */}
+          <div className="w-[108fr]">
+            <Card className="bg-white/80 backdrop-blur-[2px] border-0">
+              <div className="grid grid-cols-[1.5fr_1fr] h-full">
+                {/* 左侧：生成图片预览 */}
+                <div className="p-6 border-r border-dashed border-gray-200">
+                  <CardHeader className="px-0">
+                    <CardTitle className="text-lg font-medium">生成图片预览</CardTitle>
+                  </CardHeader>
+                  <ResultPreview
+                    image={uploadedImage}
+                    background={selectedBackground}
+                    settings={settings}
+                    onRegenerate={handleRegenerate}
+                    showProductPreview={false}
+                  />
+                </div>
+                
+                {/* 右侧：商品详情预览 */}
+                <div className="p-6">
+                  <CardHeader className="px-0">
+                    <CardTitle className="text-lg font-medium">商品详情预览</CardTitle>
+                  </CardHeader>
+                  <div className="mt-4">
+                    <PhoneFrame>
+                      <ProductPreview image={uploadedImage} />
+                    </PhoneFrame>
+                  </div>
                 </div>
               </div>
-            </div>
-          </Card>
+            </Card>
+          </div>
         </div>
       </div>
     </div>
