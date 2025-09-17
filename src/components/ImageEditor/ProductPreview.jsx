@@ -4,8 +4,8 @@ import { ShoppingCart, Heart } from 'lucide-react';
 
 const ProductPreview = ({ image }) => {
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-lg" style={{ width: '360px', maxWidth: '100%' }}>
-      {/* 商品主图 - 使用 1:1 的宽高比 */}
+    <div className="bg-white rounded-lg overflow-hidden shadow-lg" style={{ width: '324px', maxWidth: '100%' }}>
+      {/* 商品主图 */}
       <div className="relative w-full" style={{ paddingBottom: '100%' }}>
         <div className="absolute inset-0">
           {image ? (
@@ -35,80 +35,80 @@ const ProductPreview = ({ image }) => {
       </div>
 
       {/* 价格区域 */}
-      <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 p-3">
+      <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 p-2">
         <div className="flex items-baseline">
           <span className="text-sm text-red-600">¥</span>
-          <span className="text-2xl font-bold text-red-600">23.9</span>
+          <span className="text-xl font-bold text-red-600">23.9</span>
           <span className="ml-2 text-xs text-gray-500 line-through">¥32.46</span>
         </div>
         <div className="mt-1 flex flex-wrap gap-1">
-          <span className="px-1.5 py-0.5 text-xs text-red-600 border border-red-600 rounded-sm">
+          <span className="px-1 py-0.5 text-[10px] text-red-600 border border-red-600 rounded-sm">
             限时优惠
           </span>
-          <span className="px-1.5 py-0.5 text-xs text-red-600 border border-red-600 rounded-sm">
+          <span className="px-1 py-0.5 text-[10px] text-red-600 border border-red-600 rounded-sm">
             首单包邮
           </span>
         </div>
       </div>
 
       {/* 商品标题 */}
-      <div className="p-3 border-b">
+      <div className="p-2 border-b">
         <div className="flex items-start gap-2">
-          <span className="px-1.5 py-0.5 text-xs bg-orange-100 text-orange-600 rounded flex-shrink-0">
+          <span className="px-1 py-0.5 text-[10px] bg-orange-100 text-orange-600 rounded flex-shrink-0">
             精选
           </span>
-          <h1 className="text-sm font-medium leading-tight">
+          <h1 className="text-xs font-medium leading-tight">
             [NYO3]澳洲天然鱼油OMEGA-3/100粒
           </h1>
         </div>
       </div>
 
       {/* 用药说明 */}
-      <div className="p-3 border-b">
-        <div className="grid grid-cols-3 gap-2">
-          <div className="text-center p-2 bg-gray-50 rounded-lg">
-            <div className="text-xs font-medium">用药说明</div>
-            <div className="text-xs text-gray-500 mt-0.5">每日1-2次</div>
+      <div className="p-2 border-b">
+        <div className="grid grid-cols-3 gap-1">
+          <div className="text-center p-1.5 bg-gray-50 rounded">
+            <div className="text-[10px] font-medium">用药说明</div>
+            <div className="text-[10px] text-gray-500">每日1-2次</div>
           </div>
-          <div className="text-center p-2 bg-gray-50 rounded-lg">
-            <div className="text-xs font-medium">功能主治</div>
-            <div className="text-xs text-gray-500 mt-0.5">调节血脂</div>
+          <div className="text-center p-1.5 bg-gray-50 rounded">
+            <div className="text-[10px] font-medium">功能主治</div>
+            <div className="text-[10px] text-gray-500">调节血脂</div>
           </div>
-          <div className="text-center p-2 bg-gray-50 rounded-lg">
-            <div className="text-xs font-medium">使用方法</div>
-            <div className="text-xs text-gray-500 mt-0.5">口服</div>
+          <div className="text-center p-1.5 bg-gray-50 rounded">
+            <div className="text-[10px] font-medium">使用方法</div>
+            <div className="text-[10px] text-gray-500">口服</div>
           </div>
         </div>
       </div>
 
       {/* 配送信息 */}
-      <div className="p-3 border-b">
-        <div className="flex items-center justify-between text-xs text-gray-600">
+      <div className="p-2 border-b">
+        <div className="flex items-center justify-between text-[10px] text-gray-600">
           <span>快递：免运费</span>
           <span>预计1-3日送达</span>
         </div>
       </div>
 
       {/* 服务信息 */}
-      <div className="p-3 border-b">
+      <div className="p-2 border-b">
         <div className="flex flex-wrap gap-1">
-          <span className="px-1.5 py-0.5 text-xs bg-green-50 text-green-600 rounded">药品保障</span>
-          <span className="px-1.5 py-0.5 text-xs bg-green-50 text-green-600 rounded">正品承诺</span>
-          <span className="px-1.5 py-0.5 text-xs bg-gray-100 text-gray-600 rounded">隐私配送</span>
-          <span className="px-1.5 py-0.5 text-xs bg-gray-100 text-gray-600 rounded">药师服务</span>
+          <span className="px-1 py-0.5 text-[10px] bg-green-50 text-green-600 rounded">药品保障</span>
+          <span className="px-1 py-0.5 text-[10px] bg-green-50 text-green-600 rounded">正品承诺</span>
+          <span className="px-1 py-0.5 text-[10px] bg-gray-100 text-gray-600 rounded">隐私配送</span>
+          <span className="px-1 py-0.5 text-[10px] bg-gray-100 text-gray-600 rounded">药师服务</span>
         </div>
       </div>
 
       {/* 底部购买栏 */}
-      <div className="bg-white border-t p-3 flex items-center gap-2">
-        <Button variant="outline" size="icon" className="h-9 w-9">
-          <Heart className="h-4 w-4" />
+      <div className="bg-white border-t p-2 flex items-center gap-2">
+        <Button variant="outline" size="icon" className="h-7 w-7">
+          <Heart className="h-3 w-3" />
         </Button>
-        <Button variant="outline" className="h-9 flex-1 bg-gray-800 text-white hover:bg-gray-700">
-          <ShoppingCart className="h-4 w-4 mr-1" />
+        <Button variant="outline" className="h-7 flex-1 bg-gray-800 text-white hover:bg-gray-700 text-xs">
+          <ShoppingCart className="h-3 w-3 mr-1" />
           加入购物车
         </Button>
-        <Button className="h-9 flex-1 bg-red-600 text-white hover:bg-red-700">
+        <Button className="h-7 flex-1 bg-red-600 text-white hover:bg-red-700 text-xs">
           立即购买
         </Button>
       </div>
