@@ -21,13 +21,13 @@ const BackgroundSelector = ({ onBackgroundSelect }) => {
             {backgrounds.map((bg) => (
               <div
                 key={bg.id}
-                className="relative cursor-pointer rounded-lg overflow-hidden hover:ring-2 hover:ring-blue-500 transition-all"
+                className="relative cursor-pointer rounded-lg overflow-hidden aspect-square hover:ring-2 hover:ring-blue-500 transition-all"
                 onClick={() => onBackgroundSelect(bg.url)}
               >
                 <img
                   src={bg.url}
                   alt={`背景 ${bg.id}`}
-                  className="w-full h-24 object-cover"
+                  className="w-full h-full object-cover"
                 />
               </div>
             ))}

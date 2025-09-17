@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Download, RefreshCw, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import ProductPreview from './ProductPreview';
-import { cn } from "@/lib/utils";
 
+import { CardContent, Card } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { RefreshCw, Download, ChevronRight, ChevronLeft } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import React, { useState } from 'react';
+import ProductPreview from './ProductPreview';
+import { Button } from '@/components/ui/button';
 const ResultPreview = ({ image, onRegenerate }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
-  // 生成4张不同的图片URL
+  // 生成4张不同的1:1比例图片URL
   const generatedImages = [
     'https://nocode.meituan.com/photo/search?keyword=medicine,health,product&width=400&height=400',
     'https://nocode.meituan.com/photo/search?keyword=pharmacy,wellness,supplement&width=400&height=400',
@@ -44,12 +44,12 @@ const ResultPreview = ({ image, onRegenerate }) => {
             
             <TabsContent value="image" className="mt-4">
               <div className="space-y-4">
-                {/* 主预览图 */}
-                <div className="relative min-h-[300px] rounded-lg overflow-hidden bg-gray-100">
+                {/* 主预览图 - 使用正方形容器 */}
+                <div className="relative aspect-square rounded-lg overflow-hidden bg-gray-100">
                   <img 
                     src={generatedImages[selectedImageIndex]} 
                     alt={`预览图 ${selectedImageIndex + 1}`} 
-                    className="w-full h-[300px] object-contain"
+                    className="w-full h-full object-contain"
                   />
                   <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-2">
                     <Button
@@ -71,13 +71,13 @@ const ResultPreview = ({ image, onRegenerate }) => {
                   </div>
                 </div>
 
-                {/* 缩略图预览 */}
+                {/* 缩略图预览 - 使用正方形容器 */}
                 <div className="grid grid-cols-4 gap-2">
                   {generatedImages.map((img, index) => (
                     <div
                       key={index}
                       className={cn(
-                        "cursor-pointer rounded-lg overflow-hidden border-2",
+                        "cursor-pointer rounded-lg overflow-hidden border-2 aspect-square",
                         selectedImageIndex === index ? "border-blue-500" : "border-transparent"
                       )}
                       onClick={() => setSelectedImageIndex(index)}
@@ -85,7 +85,7 @@ const ResultPreview = ({ image, onRegenerate }) => {
                       <img
                         src={img}
                         alt={`缩略图 ${index + 1}`}
-                        className="w-full h-20 object-cover"
+                        className="w-full h-full object-cover"
                       />
                     </div>
                   ))}
