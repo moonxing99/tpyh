@@ -24,102 +24,63 @@ const ResultPreview = ({ image, onRegenerate }) => {
     link.click();
   };
 
-  const handlePrevImage = () => {
-    setSelectedImageIndex((prev) => (prev > 0 ? prev - 1 : generatedImages.length - 1));
-  };
-
-  const handleNextImage = () => {
-    setSelectedImageIndex((prev) => (prev < generatedImages.length - 1 ? prev + 1 : 0));
-  };
-
   return (
-    <Card className="w-full h-full bg-white/30 backdrop-blur-md border-0 shadow-lg">
-      <CardContent className="p-6">
-        <div className="flex flex-col h-full gap-4">
-          <Tabs defaultValue="image" className="w-full">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="image">图片预览</TabsTrigger>
-              <TabsTrigger value="product">商品详情</TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="image" className="mt-4">
-              <div className="space-y-4">
-                {/* 主预览图 - 使用正方形容器 */}
-                <div className="relative aspect-square rounded-lg overflow-hidden bg-gray-100">
-                  <img 
-                    src={generatedImages[selectedImageIndex]} 
-                    alt={`预览图 ${selectedImageIndex + 1}`} 
-                    className="w-full h-full object-contain"
+    <div className="space-y-4 h-full">
+      {/* 上半部分：生成图片展示区 */}
+      <Card className="w-full bg-white/30 backdrop-blur-md border-0 shadow-lg">
+        <CardContent className="p-6">
+          <div className="space-y-4">
+            {/* 2x2 网格布局展示四张图片 */}
+            <div className="grid grid-cols-2 gap-4">
+              {generatedImages.map((img, index) => (
+                <div
+                  key={index}
+                  className={cn(
+                    "cursor-pointer rounded-lg overflow-hidden border-2 aspect-square",
+                    selectedImageIndex === index ? "border-blue-500" : "border-transparent"
+                  )}
+                  onClick={() => setSelectedImageIndex(index)}
+                >
+                  <img
+                    src={img}
+                    alt={`生成图片 ${index + 1}`}
+                    className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-2">
-                    <Button
-                      variant="secondary"
-                      size="icon"
-                      className="h-8 w-8 rounded-full bg-white/80 hover:bg-white"
-                      onClick={handlePrevImage}
-                    >
-                      <ChevronLeft className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      variant="secondary"
-                      size="icon"
-                      className="h-8 w-8 rounded-full bg-white/80 hover:bg-white"
-                      onClick={handleNextImage}
-                    >
-                      <ChevronRight className="h-4 w-4" />
-                    </Button>
-                  </div>
                 </div>
+              ))}
+            </div>
 
-                {/* 缩略图预览 - 使用正方形容器 */}
-                <div className="grid grid-cols-4 gap-2">
-                  {generatedImages.map((img, index) => (
-                    <div
-                      key={index}
-                      className={cn(
-                        "cursor-pointer rounded-lg overflow-hidden border-2 aspect-square",
-                        selectedImageIndex === index ? "border-blue-500" : "border-transparent"
-                      )}
-                      onClick={() => setSelectedImageIndex(index)}
-                    >
-                      <img
-                        src={img}
-                        alt={`缩略图 ${index + 1}`}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </TabsContent>
-            
-            <TabsContent value="product" className="mt-4">
-              <div className="w-[360px] mx-auto">
-                <ProductPreview image={generatedImages[selectedImageIndex]} />
-              </div>
-            </TabsContent>
-          </Tabs>
-
-          <div className="flex gap-4 justify-end mt-auto">
-            <Button
-              variant="outline"
-              onClick={onRegenerate}
-              className="flex items-center gap-2"
-            >
-              <RefreshCw className="h-4 w-4" />
-              重新生成
-            </Button>
-            <Button
-              onClick={handleDownload}
-              className="flex items-center gap-2"
-            >
-              <Download className="h-4 w-4" />
-              下载图片
-            </Button>
+            {/* 操作按钮 */}
+            <div className="flex gap-4 justify-end">
+              <Button
+                variant="outline"
+                onClick={onRegenerate}
+                className="flex items-center gap-2"
+              >
+                <RefreshCw className="h-4 w-4" />
+                重新生成
+              </Button>
+              <Button
+                onClick={handleDownload}
+                className="flex items-center gap-2"
+              >
+                <Download className="h-4 w-4" />
+                下载图片
+              </Button>
+            </div>
           </div>
-        </div>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+
+      {/* 下半部分：商品详情预览 */}
+      <Card className="w-full bg-white/30 backdrop-blur-md border-0 shadow-lg flex-grow">
+        <CardContent className="p-6">
+          <div className="w-[360px] mx-auto">
+            <ProductPreview image={generatedImages[selectedImageIndex]} />
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 
