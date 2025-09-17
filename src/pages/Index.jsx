@@ -1,3 +1,4 @@
+
 import ImageUploader from '../components/ImageEditor/ImageUploader';
 import BackgroundSelector from '../components/ImageEditor/BackgroundSelector';
 import { CardHeader, Card, CardTitle } from '@/components/ui/card';
@@ -8,7 +9,6 @@ import React, { useState } from 'react';
 import MarketingBoxSelector from '../components/ImageEditor/MarketingBoxSelector';
 import ResultPreview from '../components/ImageEditor/ResultPreview';
 import PhoneFrame from '../components/ImageEditor/PhoneFrame';
-
 const Index = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [selectedBackground, setSelectedBackground] = useState(null);
@@ -59,8 +59,8 @@ const Index = () => {
       {/* 主要内容区域 */}
       <div className="container mx-auto px-6 py-6">
         <div className="flex gap-6">
-          {/* 左侧编辑区域 - 58份宽度 */}
-          <div className="w-[58fr]">
+          {/* 左侧编辑区域 - 固定宽度 */}
+          <div className="w-[480px] flex-shrink-0">
             <Card className="bg-white/80 backdrop-blur-[2px] border-0">
               <CardHeader>
                 <CardTitle className="text-lg font-medium">编辑区域</CardTitle>
@@ -94,8 +94,8 @@ const Index = () => {
             </Card>
           </div>
 
-          {/* 右侧预览区域 - 108份宽度 */}
-          <div className="w-[108fr]">
+          {/* 右侧预览区域 - 自适应宽度 */}
+          <div className="flex-1">
             <Card className="bg-white/80 backdrop-blur-[2px] border-0">
               <div className="grid grid-cols-[1.5fr_1fr] h-full">
                 {/* 左侧：生成图片预览 */}
