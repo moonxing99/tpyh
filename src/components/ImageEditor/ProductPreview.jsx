@@ -4,15 +4,15 @@ import { ShoppingCart, Heart } from 'lucide-react';
 
 const ProductPreview = ({ image }) => {
   return (
-    <div className="bg-white rounded-lg overflow-hidden" style={{ maxWidth: '375px' }}>
-      {/* 商品主图 - 使用 16:9 的宽高比 */}
-      <div className="relative w-full" style={{ paddingBottom: '177.78%' }}>
+    <div className="bg-white rounded-lg overflow-hidden shadow-lg" style={{ width: '360px', maxWidth: '100%' }}>
+      {/* 商品主图 - 使用 1:1 的宽高比 */}
+      <div className="relative w-full" style={{ paddingBottom: '100%' }}>
         <div className="absolute inset-0">
           {image ? (
             <img
               src={image}
               alt="商品主图"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain bg-gray-50"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-gray-100 text-gray-400">
