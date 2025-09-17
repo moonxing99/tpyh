@@ -1,4 +1,3 @@
-
 import ImageUploader from '../components/ImageEditor/ImageUploader';
 import BackgroundSelector from '../components/ImageEditor/BackgroundSelector';
 import { CardHeader, Card, CardTitle } from '@/components/ui/card';
@@ -9,6 +8,7 @@ import React, { useState } from 'react';
 import MarketingBoxSelector from '../components/ImageEditor/MarketingBoxSelector';
 import ResultPreview from '../components/ImageEditor/ResultPreview';
 import PhoneFrame from '../components/ImageEditor/PhoneFrame';
+
 const Index = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [selectedBackground, setSelectedBackground] = useState(null);
@@ -58,7 +58,7 @@ const Index = () => {
 
       {/* 主要内容区域 */}
       <div className="max-w-[1600px] mx-auto p-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[400px_1fr] gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_800px] gap-8">
           {/* 左侧编辑区域 - 包在Card中 */}
           <Card className="bg-white/80 backdrop-blur-[2px] border-0">
             <CardHeader>
@@ -94,7 +94,7 @@ const Index = () => {
           
           {/* 右侧预览区域 */}
           <Card className="bg-white/80 backdrop-blur-[2px] border-0">
-            <div className="grid grid-cols-2 divide-x-2 divide-dashed divide-gray-200">
+            <div className="grid grid-cols-[1.2fr_0.8fr] divide-x-2 divide-dashed divide-gray-200">
               {/* 左侧：生成图片预览 */}
               <div className="p-6">
                 <CardHeader className="px-0">
