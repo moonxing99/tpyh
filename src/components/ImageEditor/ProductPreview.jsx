@@ -1,32 +1,19 @@
 import React from 'react';
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart, Heart } from 'lucide-react';
 
 const ProductPreview = ({ image }) => {
-  // 计算缩放比例，使其在一个屏幕内完整显示
-  const scale = 0.4; // 缩放比例，可以根据需要调整
-  const width = 750 * scale;
-  const height = 1624 * scale;
-
   return (
-    <div className="flex justify-center items-start min-h-[400px] bg-gray-100 rounded-lg p-4">
-      <div 
-        style={{
-          width: `${width}px`,
-          height: `${height}px`,
-          transform: `scale(${scale})`,
-          transformOrigin: 'top center'
-        }}
-        className="bg-white overflow-hidden relative origin-top"
-      >
+    <ScrollArea className="h-[500px] w-full rounded-lg">
+      <div className="bg-white">
         {/* 商品主图 */}
-        <div className="w-[750px] h-[750px] relative">
+        <div className="relative w-full aspect-square">
           {image ? (
             <img
               src={image}
               alt="商品主图"
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain mx-auto"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-gray-100 text-gray-400">
@@ -34,32 +21,29 @@ const ProductPreview = ({ image }) => {
             </div>
           )}
           {/* 618特惠标签 */}
-          <div className="absolute left-4 top-4 w-16 h-16">
+          <div className="absolute left-4 top-4">
             <img 
               src="https://nocode.meituan.com/photo/search?keyword=618,sale,tag&width=64&height=64" 
               alt="618特惠"
-              className="w-full h-full object-contain"
+              className="w-16 h-16 object-contain"
             />
           </div>
           {/* 页码指示器 */}
-          <div className="absolute bottom-4 right-4 text-sm text-gray-500">
-            2/5
+          <div className="absolute bottom-4 right-4 px-2 py-1 bg-black/50 rounded text-white text-xs">
+            1/5
           </div>
         </div>
 
         {/* 价格区域 */}
         <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 p-4">
           <div className="flex items-baseline">
-            <span className="text-sm text-red-600">到手 ¥</span>
+            <span className="text-sm text-red-600">¥</span>
             <span className="text-3xl font-bold text-red-600">23.9</span>
             <span className="ml-2 text-sm text-gray-500 line-through">¥32.46</span>
           </div>
-          <div className="mt-1 text-sm text-gray-600">
-            药划算已省20.1元
-          </div>
-          <div className="mt-2 flex gap-2">
+          <div className="mt-2 flex flex-wrap gap-2">
             <span className="px-2 py-0.5 text-xs text-red-600 border border-red-600 rounded-sm">
-              活动补贴2.4元
+              限时优惠
             </span>
             <span className="px-2 py-0.5 text-xs text-red-600 border border-red-600 rounded-sm">
               首单包邮
@@ -68,62 +52,68 @@ const ProductPreview = ({ image }) => {
         </div>
 
         {/* 商品标题 */}
-        <div className="p-4">
-          <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 text-sm bg-orange-100 text-orange-600 rounded">精选</span>
-            <h1 className="text-lg font-medium">
+        <div className="p-4 border-b">
+          <div className="flex items-start gap-2">
+            <span className="px-2 py-0.5 text-sm bg-orange-100 text-orange-600 rounded flex-shrink-0">
+              精选
+            </span>
+            <h1 className="text-lg font-medium leading-tight">
               [NYO3]澳洲天然鱼油OMEGA-3/100粒
             </h1>
           </div>
         </div>
 
         {/* 用药说明 */}
-        <div className="px-4">
-          <div className="grid grid-cols-3 border rounded-lg">
-            <div className="p-3 text-center border-r">
+        <div className="p-4 border-b">
+          <div className="grid grid-cols-3 gap-4">
+            <div className="text-center p-3 bg-gray-50 rounded-lg">
               <div className="text-sm font-medium">用药说明</div>
+              <div className="text-xs text-gray-500 mt-1">每日1-2次</div>
             </div>
-            <div className="p-3 text-center border-r">
+            <div className="text-center p-3 bg-gray-50 rounded-lg">
               <div className="text-sm font-medium">功能主治</div>
-              <div className="text-xs text-gray-500 mt-1">清畅血管，调节血脂</div>
+              <div className="text-xs text-gray-500 mt-1">调节血脂</div>
             </div>
-            <div className="p-3 text-center">
-              <div className="text-sm font-medium">常用用法</div>
-              <div className="text-xs text-gray-500 mt-1">口服，一次10ml</div>
+            <div className="text-center p-3 bg-gray-50 rounded-lg">
+              <div className="text-sm font-medium">使用方法</div>
+              <div className="text-xs text-gray-500 mt-1">口服</div>
             </div>
           </div>
         </div>
 
         {/* 配送信息 */}
-        <div className="p-4">
-          <div className="flex items-center text-sm text-gray-600">
-            <span className="mr-4">快递：快递发货</span>
-            <span>预计1-3日送达·包邮</span>
+        <div className="p-4 border-b">
+          <div className="flex items-center justify-between text-sm text-gray-600">
+            <span>快递：免运费</span>
+            <span>预计1-3日送达</span>
           </div>
         </div>
 
         {/* 服务信息 */}
-        <div className="px-4">
+        <div className="p-4 border-b">
           <div className="flex flex-wrap gap-2">
-            <span className="px-2 py-1 text-xs bg-green-50 text-green-600 rounded">药划算·常备药保险</span>
-            <span className="px-2 py-1 text-xs bg-green-50 text-green-600 rounded">买药直接报销</span>
-            <span className="px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded">不瘦必赔</span>
-            <span className="px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded">买贵必赔</span>
+            <span className="px-2 py-1 text-xs bg-green-50 text-green-600 rounded">药品保障</span>
+            <span className="px-2 py-1 text-xs bg-green-50 text-green-600 rounded">正品承诺</span>
+            <span className="px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded">隐私配送</span>
+            <span className="px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded">药师服务</span>
           </div>
         </div>
 
         {/* 底部购买栏 */}
-        <div className="absolute bottom-0 left-0 right-0 bg-white border-t p-2 flex items-center gap-2">
+        <div className="sticky bottom-0 left-0 right-0 bg-white border-t p-3 flex items-center gap-3">
+          <Button variant="outline" size="icon" className="flex-none">
+            <Heart className="h-5 w-5" />
+          </Button>
           <Button variant="outline" className="flex-1 bg-gray-800 text-white hover:bg-gray-700">
+            <ShoppingCart className="h-4 w-4 mr-2" />
             加入购物车
           </Button>
-          <Button className="flex-1 bg-yellow-400 text-black hover:bg-yellow-500">
+          <Button className="flex-1 bg-red-600 text-white hover:bg-red-700">
             立即购买
-            <span className="ml-1">¥5.24</span>
           </Button>
         </div>
       </div>
-    </div>
+    </ScrollArea>
   );
 };
 
