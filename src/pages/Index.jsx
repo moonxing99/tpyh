@@ -45,9 +45,9 @@ const Index = () => {
             
             <Tabs defaultValue="background" className="w-full">
               <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="background">加背景图</TabsTrigger>
-                <TabsTrigger value="sellingPoint">加卖点</TabsTrigger>
-                <TabsTrigger value="marketingBox">加营销框</TabsTrigger>
+                <TabsTrigger value="background">背景</TabsTrigger>
+                <TabsTrigger value="sellingPoint">背景+卖点信息</TabsTrigger>
+                <TabsTrigger value="marketingBox">背景+营销信息</TabsTrigger>
               </TabsList>
               
               <TabsContent value="background">
