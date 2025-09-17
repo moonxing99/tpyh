@@ -1,4 +1,3 @@
-
 import ImageUploader from '../components/ImageEditor/ImageUploader';
 import BackgroundSelector from '../components/ImageEditor/BackgroundSelector';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -7,6 +6,8 @@ import ProductPreview from '../components/ImageEditor/ProductPreview';
 import React, { useState } from 'react';
 import MarketingBoxSelector from '../components/ImageEditor/MarketingBoxSelector';
 import ResultPreview from '../components/ImageEditor/ResultPreview';
+import { Card } from '@/components/ui/card';
+
 const Index = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [selectedBackground, setSelectedBackground] = useState(null);
@@ -56,16 +57,16 @@ const Index = () => {
 
       {/* 主要内容区域 */}
       <div className="max-w-[1600px] mx-auto p-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8">
-          {/* 左侧编辑区域 */}
+        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-8">
+          {/* 左侧编辑区域 - 宽度减小到300px */}
           <div className="space-y-6">
             <ImageUploader onImageUpload={handleImageUpload} />
             
             <Tabs defaultValue="background" className="w-full">
               <TabsList className="grid w-full grid-cols-3 bg-white/40 backdrop-blur-sm">
                 <TabsTrigger value="background">背景</TabsTrigger>
-                <TabsTrigger value="sellingPoint">背景+卖点信息</TabsTrigger>
-                <TabsTrigger value="marketingBox">背景+营销信息</TabsTrigger>
+                <TabsTrigger value="sellingPoint">卖点</TabsTrigger>
+                <TabsTrigger value="marketingBox">营销</TabsTrigger>
               </TabsList>
               
               <TabsContent value="background">
@@ -85,11 +86,11 @@ const Index = () => {
             </Tabs>
           </div>
           
-          {/* 右侧预览区域 */}
-          <div className="h-full lg:w-[800px]">
-            <div className="grid grid-cols-2 gap-8">
+          {/* 右侧预览区域 - 使用Card包裹并添加虚线分隔 */}
+          <Card className="p-6 bg-white/80 backdrop-blur-[2px]">
+            <div className="grid grid-cols-2 divide-x-2 divide-dashed divide-gray-200">
               {/* 左侧：生成图片预览 */}
-              <div className="space-y-4">
+              <div className="pr-6">
                 <ResultPreview
                   image={uploadedImage}
                   background={selectedBackground}
@@ -100,13 +101,13 @@ const Index = () => {
               </div>
               
               {/* 右侧：商品详情预览 */}
-              <div className="space-y-4">
+              <div className="pl-6">
                 <div className="w-[360px] mx-auto">
                   <ProductPreview image={uploadedImage} />
                 </div>
               </div>
             </div>
-          </div>
+          </Card>
         </div>
       </div>
     </div>
