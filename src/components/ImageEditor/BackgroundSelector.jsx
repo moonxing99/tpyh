@@ -1,38 +1,86 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
-const backgrounds = [
-  { id: 1, url: 'https://nocode.meituan.com/photo/search?keyword=modern,minimal,background&width=100&height=100' },
-  { id: 2, url: 'https://nocode.meituan.com/photo/search?keyword=nature,background&width=100&height=100' },
-  { id: 3, url: 'https://nocode.meituan.com/photo/search?keyword=abstract,background&width=100&height=100' },
-  { id: 4, url: 'https://nocode.meituan.com/photo/search?keyword=gradient,background&width=100&height=100' },
-];
+const BackgroundSelector = ({ onBackgroundSelect, selectedBackground }) => {
+  const backgroundCategories = [
+    { id: 'all', name: '全部' },
+    { id: 'platform', name: '台面底台' },
+    { id: 'outdoor', name: '户外实景' },
+    { id: 'simple', name: '简约抽象' },
+    { id: 'plant', name: '植物景观' }
+  ];
 
-const BackgroundSelector = ({ onBackgroundSelect }) => {
+  const backgrounds = [
+    { id: 1, category: 'platform', url: 'https://nocode.meituan.com/photo/search?keyword=modern,minimal,platform&width=120&height=120' },
+    { id: 2, category: 'outdoor', url: 'https://nocode.meituan.com/photo/search?keyword=outdoor,scenery&width=120&height=120' },
+    { id: 3, category: 'simple', url: 'https://nocode.meituan.com/photo/search?keyword=abstract,minimal&width=120&height=120' },
+    { id: 4, category: 'plant', url: 'https://nocode.meituan.com/photo/search?keyword=plant,green&width=120&height=120' },
+    { id: 5, category: 'platform', url: 'https://nocode.meituan.com/photo/search?keyword=table,surface&width=120&height=120' },
+    { id: 6, category: 'outdoor', url: 'https://nocode.meituan.com/photo/search?keyword=nature,landscape&width=120&height=120' },
+    { id: 7, category: 'simple', url: 'https://nocode.meituan.com/photo/search?keyword=geometric,simple&width=120&height=120' },
+    { id: 8, category: 'plant', url: 'https://nocode.meituan.com/photo/search?keyword=flower,leaf&width=120&height=120' },
+    { id: 9, category: 'platform', url: 'https://nocode.meituan.com/photo/search?keyword=desk,surface&width=120&height=120' },
+    { id: 10, category: 'outdoor', url: 'https://nocode.meituan.com/photo/search?keyword=garden,park&width=120&height=120' },
+    { id: 11, category: 'simple', url: 'https://nocode.meituan.com/photo/search?keyword=pattern,minimal&width=120&height=120' },
+    { id: 12, category: 'plant', url: 'https://nocode.meituan.com/photo/search?keyword=tropical,green&width=120&height=120' }
+  ];
+
+  const [selectedCategory, setSelectedCategory] = React.useState('all');
+
+  const filteredBackgrounds = selectedCategory === 'all' 
+    ? backgrounds 
+    : backgrounds.filter(bg => bg.category === selectedCategory);
+
   return (
-    <Card className="w-full bg-white/30 backdrop-blur-md border-0 shadow-lg mt-4">
+    <Card className="w-full bg-white/30 backdrop-blur-md border-0 shadow-lg">
       <CardHeader>
-        <CardTitle className="text-lg">选择背景</CardTitle>
+        <CardTitle className="text-lg">加背景图</CardTitle>
       </CardHeader>
       <CardContent>
-        <ScrollArea className="h-32">
-          <div className="grid grid-cols-3 gap-4">
-            {backgrounds.map((bg) => (
-              <div
-                key={bg.id}
-                className="relative cursor-pointer rounded-lg overflow-hidden aspect-square hover:ring-2 hover:ring-blue-500 transition-all"
-                onClick={() => onBackgroundSelect(bg.url)}
+        <div className="space-y-4">
+          {/* 分类选择 */}
+          <div className="flex flex-wrap gap-2">
+            {backgroundCategories.map(category => (
+              <Button
+                key={category.id}
+                variant={selectedCategory === category.id ? "default" : "outline"}
+                size="sm"
+                onClick={() => setSelectedCategory(category.id)}
+                className={cn(
+                  "rounded-full",
+                  selectedCategory === category.id && "bg-primary text-primary-foreground"
+                )}
               >
-                <img
-                  src={bg.url}
-                  alt={`背景 ${bg.id}`}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+                {category.name}
+              </Button>
             ))}
           </div>
-        </ScrollArea>
+
+          {/* 背景图片网格 */}
+          <ScrollArea className="h-[400px] pr-4">
+            <div className="grid grid-cols-3 gap-4">
+              {filteredBackgrounds.map((bg) => (
+                <div
+                  key={bg.id}
+                  className={cn(
+                    "relative cursor-pointer rounded-lg overflow-hidden aspect-square hover:ring-2 hover:ring-blue-500 transition-all",
+                    selectedBackground === bg.url && "ring-2 ring-blue-500"
+                  )}
+                  onClick={() => onBackgroundSelect(bg.url)}
+                >
+                  <img
+                    src={bg.url}
+                    alt={`背景 ${bg.id}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </ScrollArea>
+        </div>
       </CardContent>
     </Card>
   );

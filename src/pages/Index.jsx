@@ -1,34 +1,23 @@
 import React, { useState } from 'react';
 import ImageUploader from '../components/ImageEditor/ImageUploader';
-import TemplateSelector from '../components/ImageEditor/TemplateSelector';
+import BackgroundSelector from '../components/ImageEditor/BackgroundSelector';
 import ResultPreview from '../components/ImageEditor/ResultPreview';
 
 const Index = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
-  const [selectedTemplate, setSelectedTemplate] = useState(null);
-  const [templateSettings, setTemplateSettings] = useState({});
+  const [selectedBackground, setSelectedBackground] = useState(null);
 
   const handleImageUpload = (image) => {
     setUploadedImage(image);
   };
 
-  const handleTemplateSelect = (template) => {
-    setSelectedTemplate(template);
-  };
-
-  const handleSettingsChange = (type, settings) => {
-    setTemplateSettings(prev => ({
-      ...prev,
-      [type]: {
-        ...(prev[type] || {}),
-        ...settings
-      }
-    }));
+  const handleBackgroundSelect = (backgroundUrl) => {
+    setSelectedBackground(backgroundUrl);
   };
 
   const handleRegenerate = () => {
     // 重新生成图片的逻辑
-    console.log('Regenerating with settings:', templateSettings);
+    console.log('Regenerating with background:', selectedBackground);
   };
 
   return (
@@ -39,9 +28,9 @@ const Index = () => {
           {/* 左侧编辑区域 */}
           <div className="space-y-6">
             <ImageUploader onImageUpload={handleImageUpload} />
-            <TemplateSelector
-              onTemplateSelect={handleTemplateSelect}
-              onSettingsChange={handleSettingsChange}
+            <BackgroundSelector
+              onBackgroundSelect={handleBackgroundSelect}
+              selectedBackground={selectedBackground}
             />
           </div>
           
@@ -49,6 +38,7 @@ const Index = () => {
           <div className="h-full">
             <ResultPreview
               image={uploadedImage}
+              background={selectedBackground}
               onRegenerate={handleRegenerate}
             />
           </div>
