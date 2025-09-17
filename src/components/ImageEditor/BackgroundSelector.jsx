@@ -1,9 +1,9 @@
-import React from 'react';
-import { Card, CardContent } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { CardContent, Card } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
+import React from 'react';
+import { Button } from '@/components/ui/button';
 const BackgroundSelector = ({ onBackgroundSelect, selectedBackground }) => {
   const backgroundCategories = [
     { id: 'all', name: '全部' },
@@ -35,7 +35,7 @@ const BackgroundSelector = ({ onBackgroundSelect, selectedBackground }) => {
     : backgrounds.filter(bg => bg.category === selectedCategory);
 
   return (
-    <Card className="w-full bg-white/30 backdrop-blur-md border-0 shadow-lg">
+    <Card className="w-full bg-white/80 backdrop-blur-[2px] border border-gray-100/20 shadow-sm">
       <CardContent className="p-6">
         <div className="space-y-4">
           {/* 分类选择 */}

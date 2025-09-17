@@ -1,9 +1,9 @@
+
 import { CardContent, Card } from '@/components/ui/card';
 import { RefreshCw, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-
 const ResultPreview = ({ image, onRegenerate, showProductPreview = true }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
@@ -23,7 +23,7 @@ const ResultPreview = ({ image, onRegenerate, showProductPreview = true }) => {
   };
 
   return (
-    <Card className="w-full bg-white/30 backdrop-blur-md border-0 shadow-lg">
+    <Card className="w-full bg-white/80 backdrop-blur-[2px] border border-gray-100/20 shadow-sm">
       <CardContent className="p-6">
         <div className="space-y-4">
           {/* 2x2 网格布局展示四张图片 */}

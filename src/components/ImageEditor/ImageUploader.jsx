@@ -1,8 +1,8 @@
-import React from 'react';
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Upload } from 'lucide-react';
 
+import { CardContent, Card } from '@/components/ui/card';
+import { Upload } from 'lucide-react';
+import React from 'react';
+import { Button } from '@/components/ui/button';
 const ImageUploader = ({ onImageUpload }) => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -16,7 +16,7 @@ const ImageUploader = ({ onImageUpload }) => {
   };
 
   return (
-    <Card className="w-full bg-white/30 backdrop-blur-md border-0 shadow-lg">
+    <Card className="w-full bg-white/80 backdrop-blur-[2px] border border-gray-100/20 shadow-sm">
       <CardContent className="p-6">
         <div className="flex flex-col items-center gap-4">
           <label htmlFor="image-upload" className="w-full cursor-pointer">

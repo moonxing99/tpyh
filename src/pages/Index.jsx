@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 import ImageUploader from '../components/ImageEditor/ImageUploader';
 import BackgroundSelector from '../components/ImageEditor/BackgroundSelector';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import SellingPointSelector from '../components/ImageEditor/SellingPointSelector';
+import ProductPreview from '../components/ImageEditor/ProductPreview';
+import React, { useState } from 'react';
 import MarketingBoxSelector from '../components/ImageEditor/MarketingBoxSelector';
 import ResultPreview from '../components/ImageEditor/ResultPreview';
-import ProductPreview from '../components/ImageEditor/ProductPreview';
-
 const Index = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [selectedBackground, setSelectedBackground] = useState(null);
@@ -35,9 +35,9 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-50 to-pink-100">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50/50 to-pink-50">
       {/* 顶部导航栏 */}
-      <nav className="bg-white/70 backdrop-blur-md border-b border-gray-200/20">
+      <nav className="bg-white/60 backdrop-blur-sm border-b border-gray-100/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
@@ -62,7 +62,7 @@ const Index = () => {
             <ImageUploader onImageUpload={handleImageUpload} />
             
             <Tabs defaultValue="background" className="w-full">
-              <TabsList className="grid w-full grid-cols-3 bg-white/50 backdrop-blur-sm">
+              <TabsList className="grid w-full grid-cols-3 bg-white/40 backdrop-blur-sm">
                 <TabsTrigger value="background">背景</TabsTrigger>
                 <TabsTrigger value="sellingPoint">背景+卖点信息</TabsTrigger>
                 <TabsTrigger value="marketingBox">背景+营销信息</TabsTrigger>

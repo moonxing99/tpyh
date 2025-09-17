@@ -1,9 +1,9 @@
-import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
+import { Input } from '@/components/ui/input';
+import { CardContent, CardHeader, Card, CardTitle } from '@/components/ui/card';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import React from 'react';
+import { Label } from '@/components/ui/label';
 const SellingPointSelector = ({ onSettingsChange }) => {
   const templateImages = [
     { id: 'sp1', name: '简约风格', preview: 'https://nocode.meituan.com/photo/search?keyword=minimal,clean,design&width=100&height=60' },
@@ -12,7 +12,7 @@ const SellingPointSelector = ({ onSettingsChange }) => {
   ];
 
   return (
-    <Card className="w-full bg-white/30 backdrop-blur-md border-0 shadow-lg mt-4">
+    <Card className="w-full bg-white/80 backdrop-blur-[2px] border border-gray-100/20 shadow-sm mt-4">
       <CardHeader>
         <CardTitle className="text-lg">加卖点</CardTitle>
       </CardHeader>
