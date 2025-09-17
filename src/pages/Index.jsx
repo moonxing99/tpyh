@@ -6,7 +6,7 @@ import ProductPreview from '../components/ImageEditor/ProductPreview';
 import React, { useState } from 'react';
 import MarketingBoxSelector from '../components/ImageEditor/MarketingBoxSelector';
 import ResultPreview from '../components/ImageEditor/ResultPreview';
-import { Card } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 
 const Index = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
@@ -86,11 +86,14 @@ const Index = () => {
             </Tabs>
           </div>
           
-          {/* 右侧预览区域 - 移除Card的border */}
-          <Card className="p-6 bg-white/80 backdrop-blur-[2px] border-0">
+          {/* 右侧预览区域 */}
+          <Card className="bg-white/80 backdrop-blur-[2px] border-0">
             <div className="grid grid-cols-2 divide-x-2 divide-dashed divide-gray-200">
               {/* 左侧：生成图片预览 */}
-              <div className="pr-6">
+              <div className="p-6">
+                <CardHeader className="px-0">
+                  <CardTitle className="text-lg font-medium">生成图片预览</CardTitle>
+                </CardHeader>
                 <ResultPreview
                   image={uploadedImage}
                   background={selectedBackground}
@@ -101,7 +104,10 @@ const Index = () => {
               </div>
               
               {/* 右侧：商品详情预览 */}
-              <div className="pl-6">
+              <div className="p-6">
+                <CardHeader className="px-0">
+                  <CardTitle className="text-lg font-medium">商品详情预览</CardTitle>
+                </CardHeader>
                 <div className="w-[360px] mx-auto">
                   <ProductPreview image={uploadedImage} />
                 </div>
