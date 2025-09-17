@@ -1,4 +1,3 @@
-
 import { CardContent, Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { RefreshCw, Download, ChevronRight, ChevronLeft } from 'lucide-react';
@@ -6,6 +5,7 @@ import { cn } from '@/lib/utils';
 import React, { useState } from 'react';
 import ProductPreview from './ProductPreview';
 import { Button } from '@/components/ui/button';
+
 const ResultPreview = ({ image, onRegenerate }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
