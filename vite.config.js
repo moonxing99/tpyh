@@ -33,7 +33,8 @@ const plugins = isProdEnv
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
-    host: '::',
+    // 为避免某些环境下 uv_interface_addresses 报错，固定到本机 IPv4
+    host: '127.0.0.1',
     port: '8080',
     hmr: {
       overlay: false,
