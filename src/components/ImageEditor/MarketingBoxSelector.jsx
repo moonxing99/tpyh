@@ -4,18 +4,19 @@ import { Button } from '@/components/ui/button';
 import React, { useState } from 'react';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
-import starIcon from '/星星.png';
-import whiteStarIcon from '/星星-白.png';
+const starIcon = import.meta.env.BASE_URL + '星星.png';
+const whiteStarIcon = import.meta.env.BASE_URL + '星星-白.png';
 
 const MarketingBoxSelector = ({ onSettingsChange, workflowParams, setWorkflowParams, onTemplateChange }) => {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
   const [showRecommendation, setShowRecommendation] = useState(false);
   const [isThinking, setIsThinking] = useState(false);
 
+  const base = import.meta.env.BASE_URL;
   const templateImages = [
-    { id: 'mb1', name: '样式1', preview: '/促销模版/促销模板3.png', recommended: true },
-    { id: 'mb2', name: '样式2', preview: '/促销模版/画板备份 2.png', recommended: true },
-    { id: 'mb3', name: '样式3', preview: '/促销模版/画板备份.png', recommended: false },
+    { id: 'mb1', name: '样式1', preview: base + '促销模版/促销模板3.png', recommended: true },
+    { id: 'mb2', name: '样式2', preview: base + '促销模版/画板备份 2.png', recommended: true },
+    { id: 'mb3', name: '样式3', preview: base + '促销模版/画板备份.png', recommended: false },
   ];
 
   const handleAIHelp = () => {

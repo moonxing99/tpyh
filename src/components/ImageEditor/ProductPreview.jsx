@@ -1,5 +1,5 @@
 import React from 'react';
-import screenImg from '/界面模拟图.png';
+const screenImg = import.meta.env.BASE_URL + '界面模拟图.png';
 
 const ProductPreview = ({ image, selectedGeneratedImage }) => {
   // 优先显示选中的生成图片；没有则显示上传/抠图后的商品图片
@@ -18,7 +18,16 @@ const ProductPreview = ({ image, selectedGeneratedImage }) => {
         }}
       >
         {displayImage ? (
-          <img src={displayImage} alt="商品主图" className="w-full h-full object-contain" style={{ borderRadius: '54px 54px 0 0' }} />
+          <img 
+            src={displayImage} 
+            alt="商品主图" 
+            className="w-full h-full object-contain" 
+            style={{ borderRadius: '54px 54px 0 0' }}
+            decoding="async"
+            fetchpriority="high"
+            width={300}
+            height={288}
+          />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-gray-400" style={{ borderRadius: '54px 54px 0 0' }}>请上传商品图片</div>
         )}

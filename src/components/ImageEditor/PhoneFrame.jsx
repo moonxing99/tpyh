@@ -1,5 +1,5 @@
 import React from 'react';
-import frameImg from '/样机.png';
+const frameImg = import.meta.env.BASE_URL + '样机.png';
 
 const PhoneFrame = ({ children }) => {
   return (

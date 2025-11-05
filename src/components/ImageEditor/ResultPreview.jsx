@@ -62,12 +62,16 @@ const ResultPreview = ({ images, onRegenerate, showProductPreview = true, onImag
                 );
               }
               return (
-                <img
+              <img
                   src={imgSrc}
                   alt={`生成图片 ${index + 1}`}
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                   crossOrigin="anonymous"
+                  loading="lazy"
+                  decoding="async"
+                  width={234}
+                  height={234}
                   onLoad={(e) => {
                     try {
                       // 成功加载日志

@@ -4,7 +4,7 @@ import { CardContent, Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import starIcon from '/星星.png';
+const starIcon = import.meta.env.BASE_URL + '星星.png';
 
 const BackgroundSelector = ({ onBackgroundSelect, selectedBackground, setCanvasDisplayImage }) => {
   const backgroundCategories = [
@@ -16,16 +16,17 @@ const BackgroundSelector = ({ onBackgroundSelect, selectedBackground, setCanvasD
     { id: 'plant', name: '植物景观' }
   ];
 
+  const base = import.meta.env.BASE_URL;
   const backgrounds = [
-    { id: 1, category: 'platform', url: '/背景图/1.png' },
-    { id: 2, category: 'outdoor', url: '/背景图/2.png' },
-    { id: 3, category: 'simple', url: '/背景图/3.png' },
-    { id: 4, category: 'plant', url: '/背景图/4.png' },
-    { id: 5, category: 'platform', url: '/背景图/5.png' },
-    { id: 6, category: 'outdoor', url: '/背景图/6.png' },
-    { id: 7, category: 'simple', url: '/背景图/7.png' },
-    { id: 8, category: 'plant', url: '/背景图/8.png' },
-    { id: 9, category: 'platform', url: '/背景图/9.png' }
+    { id: 1, category: 'platform', url: base + '背景图/1.png' },
+    { id: 2, category: 'outdoor', url: base + '背景图/2.png' },
+    { id: 3, category: 'simple', url: base + '背景图/3.png' },
+    { id: 4, category: 'plant', url: base + '背景图/4.png' },
+    { id: 5, category: 'platform', url: base + '背景图/5.png' },
+    { id: 6, category: 'outdoor', url: base + '背景图/6.png' },
+    { id: 7, category: 'simple', url: base + '背景图/7.png' },
+    { id: 8, category: 'plant', url: base + '背景图/8.png' },
+    { id: 9, category: 'platform', url: base + '背景图/9.png' }
   ];
 
   const [selectedCategory, setSelectedCategory] = React.useState('all');

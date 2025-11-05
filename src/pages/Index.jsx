@@ -9,7 +9,7 @@ import MarketingBoxSelector from '@/components/ImageEditor/MarketingBoxSelector'
 import ResultPreview from '@/components/ImageEditor/ResultPreview';
 import PhoneFrame from '@/components/ImageEditor/PhoneFrame';
 import ProductPreview from '@/components/ImageEditor/ProductPreview';
-import avatarImg from '/头像.png';
+const avatarImg = import.meta.env.BASE_URL + '头像.png';
 
 const Index = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
@@ -610,11 +610,12 @@ const Index = () => {
     // 蓝：4/9（保留）
     // 红：7（替换原 6）
     // 紫：8（替换原 7）
-    if (bgIdx === 7) overlay = '/介绍模版/模版1/红.png';
-    else if (bgIdx === 4 || bgIdx === 9) overlay = '/介绍模版/模版1/蓝.png';
-    else if (bgIdx === 8) overlay = '/介绍模版/模版1/紫.png';
-    else if (bgIdx === 3 || bgIdx === 6) overlay = '/介绍模版/模版1/橙.png';
-    else if (bgIdx === 1 || bgIdx === 2 || bgIdx === 5) overlay = '/介绍模版/模版1/绿.png';
+    const base = import.meta.env.BASE_URL;
+    if (bgIdx === 7) overlay = base + '介绍模版/模版1/红.png';
+    else if (bgIdx === 4 || bgIdx === 9) overlay = base + '介绍模版/模版1/蓝.png';
+    else if (bgIdx === 8) overlay = base + '介绍模版/模版1/紫.png';
+    else if (bgIdx === 3 || bgIdx === 6) overlay = base + '介绍模版/模版1/橙.png';
+    else if (bgIdx === 1 || bgIdx === 2 || bgIdx === 5) overlay = base + '介绍模版/模版1/绿.png';
 
     setTemplateOverlaySrc(overlay);
   }, [selectedSellingTemplate, selectedBackground]);
@@ -1016,7 +1017,7 @@ const Index = () => {
                   {/* Step1: 上传商品图片 */}
                   <div>
                     <div className="flex items-center mb-4">
-                      <img src="/step1.png" alt="Step1" className="w-[173px] h-[29px]" />
+                      <img src={`${import.meta.env.BASE_URL}step1.png`} alt="Step1" className="w-[173px] h-[29px]" />
                       <span 
                         className="ml-2"
                         style={{ 
@@ -1037,7 +1038,7 @@ const Index = () => {
                   {/* Step2: 选择优化内容 */}
                   <div>
                     <div className="flex items-center mb-2">
-                      <img src="/step2.png" alt="Step2" className="w-[173px] h-[29px]" />
+                      <img src={`${import.meta.env.BASE_URL}step2.png`} alt="Step2" className="w-[173px] h-[29px]" />
                     </div>
                     <Tabs defaultValue="background" className="w-full">
                       <TabsList className="flex w-full items-center h-[50px] justify-start bg-white">
@@ -1114,7 +1115,7 @@ const Index = () => {
                     }}
                   >
                     <img 
-                      src={isGenerating || !uploadedImage ? '/按钮-置灰.png' : '/按钮-激活.png'} 
+                      src={isGenerating || !uploadedImage ? `${import.meta.env.BASE_URL}按钮-置灰.png` : `${import.meta.env.BASE_URL}按钮-激活.png`} 
                       alt="生成图片" 
                       className="w-full h-full object-cover"
                     />
@@ -1342,7 +1343,7 @@ const Index = () => {
                   <div className="w-[300px] flex-shrink-0">
                     <div className="h-[650px]">
                       <div className="flex justify-center items-center mb-[14px]">
-                        <img src="/预览标题.png" alt="实机预览" className="h-6" />
+                        <img src={`${import.meta.env.BASE_URL}预览标题.png`} alt="实机预览" className="h-6" />
                       </div>
                       <div className="flex justify-center items-center">
                         <PhoneFrame>
@@ -1404,7 +1405,7 @@ const Index = () => {
                   <div className="w-[300px] flex-shrink-0">
                     <div className="h-[650px]">
                       <div className="flex justify-center items-center mb-[14px]">
-                        <img src="/预览标题.png" alt="实机预览" className="h-6" />
+                        <img src={`${import.meta.env.BASE_URL}预览标题.png`} alt="实机预览" className="h-6" />
                   </div>
                   <div className="flex justify-center items-center">
                     <PhoneFrame>

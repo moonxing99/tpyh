@@ -5,8 +5,8 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import React, { useState } from 'react';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
-import starIcon from '/星星.png';
-import whiteStarIcon from '/星星-白.png';
+const starIcon = import.meta.env.BASE_URL + '星星.png';
+const whiteStarIcon = import.meta.env.BASE_URL + '星星-白.png';
 
 const SellingPointSelector = ({ onSettingsChange, workflowParams, setWorkflowParams, setCanvasDisplayImage, onTemplateChange, onCommitField, onAIHelp }) => {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
@@ -32,10 +32,11 @@ const SellingPointSelector = ({ onSettingsChange, workflowParams, setWorkflowPar
     };
   }, []);
 
+  const base = import.meta.env.BASE_URL;
   const templateImages = [
-    { id: 'sp1', name: '样式1', preview: '/介绍模版/1.png', recommended: true },
-    { id: 'sp2', name: '样式2', preview: '/介绍模版/2.png', recommended: true },
-    { id: 'sp3', name: '样式3', preview: '/介绍模版/3.png', recommended: false },
+    { id: 'sp1', name: '样式1', preview: base + '介绍模版/1.png', recommended: true },
+    { id: 'sp2', name: '样式2', preview: base + '介绍模版/2.png', recommended: true },
+    { id: 'sp3', name: '样式3', preview: base + '介绍模版/3.png', recommended: false },
   ];
 
   const handleAIHelp = async () => {
