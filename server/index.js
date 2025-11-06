@@ -11,11 +11,21 @@ const app = express();
 app.set('trust proxy', true);
 const PORT = process.env.PORT || 8787;
 
+// CORS 配置：开发环境允许本地访问，生产环境允许 GitHub Pages 域名
+const allowedOrigins = [
+  'http://localhost:8080',
+  'http://127.0.0.1:8080',
+  'https://moonxing99.github.io',
+];
 app.use(cors({
-  origin: [
-    'http://localhost:8080',
-    'http://127.0.0.1:8080',
-  ],
+  origin: (origin, callback) => {
+    // 允许无 origin（如 Postman）或允许列表中的域名
+    if (!origin || allowedOrigins.some(allowed => origin.startsWith(allowed))) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: false,
 }));
 app.use(express.json({ limit: '2mb' }));
@@ -186,8 +196,14 @@ app.get('/api/health', (_req, res) => {
   res.json({ ok: true });
 });
 
-app.listen(PORT, () => {
-  console.log(`Coze proxy server listening on http://localhost:${PORT}`);
-});
+// 只在非 Vercel 环境中监听端口（本地开发）
+if (process.env.VERCEL !== '1') {
+  app.listen(PORT, () => {
+    console.log(`Coze proxy server listening on http://localhost:${PORT}`);
+  });
+}
+
+// 导出 app 供 Vercel 使用
+export default app;
 
 

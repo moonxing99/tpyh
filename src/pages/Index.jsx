@@ -11,6 +11,9 @@ import PhoneFrame from '@/components/ImageEditor/PhoneFrame';
 import ProductPreview from '@/components/ImageEditor/ProductPreview';
 const avatarImg = import.meta.env.BASE_URL + '头像.png';
 
+// API 基础地址：开发环境使用本地服务器，生产环境使用环境变量
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8788';
+
 const Index = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [isCuttingOut, setIsCuttingOut] = useState(false); // 是否正在抠图
@@ -59,7 +62,7 @@ const Index = () => {
       if (typeof imageUrl === 'string' && imageUrl.startsWith('data:')) {
         try {
           // 优先上传到 Coze 文件接口
-          const up = await fetch('http://127.0.0.1:8788/api/coze/file_upload', {
+          const up = await fetch(`${API_BASE_URL}/api/coze/file_upload`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ dataUrl: imageUrl })
@@ -84,7 +87,7 @@ const Index = () => {
       
       console.log('[Image Cutout] 使用图片:', imageFileId ? `file_id: ${imageFileId}` : `URL: ${imageUrlToSend}`);
       
-      const resp = await fetch('http://127.0.0.1:8788/api/coze/stream_run', {
+      const resp = await fetch(`${API_BASE_URL}/api/coze/stream_run`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -267,7 +270,7 @@ const Index = () => {
       if (typeof uploadedImage === 'string' && uploadedImage.startsWith('data:')) {
         try {
           // 优先上传到 Coze 文件接口，拿到 Coze 可访问的 URL
-          const up = await fetch('http://127.0.0.1:8788/api/coze/file_upload', {
+          const up = await fetch(`${API_BASE_URL}/api/coze/file_upload`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ dataUrl: uploadedImage })
@@ -298,7 +301,7 @@ const Index = () => {
           } else if (up.ok) {
             // Coze 上传成功但没有 URL 也没有 file_id，回退到本地上传
             console.warn('[AI Help] Coze 上传成功但未返回 URL 或 file_id，回退到本地上传');
-            const localUp = await fetch('http://127.0.0.1:8788/api/upload', {
+            const localUp = await fetch(`${API_BASE_URL}/api/upload`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ dataUrl: uploadedImage })
@@ -319,7 +322,7 @@ const Index = () => {
           // 如果 Coze 上传失败，回退到本地静态上传
           if (!up.ok) {
             console.warn('[AI Help] Coze 文件上传失败，回退到本地上传');
-            const localUp = await fetch('http://127.0.0.1:8788/api/upload', {
+            const localUp = await fetch(`${API_BASE_URL}/api/upload`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ dataUrl: uploadedImage })
@@ -344,7 +347,7 @@ const Index = () => {
       
       console.log('[AI Help] 使用图片:', imageFileId ? `file_id: ${imageFileId}` : `URL: ${imageUrlToSend}`);
       
-      const resp = await fetch('http://127.0.0.1:8788/api/coze/stream_run', {
+      const resp = await fetch(`${API_BASE_URL}/api/coze/stream_run`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -647,7 +650,7 @@ const Index = () => {
       if (typeof uploadedImage === 'string' && uploadedImage.startsWith('data:')) {
         try {
           // 优先上传到 Coze 文件接口，拿到 Coze 可访问的 URL
-          const up = await fetch('http://127.0.0.1:8788/api/coze/file_upload', {
+          const up = await fetch(`${API_BASE_URL}/api/coze/file_upload`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ dataUrl: uploadedImage })
@@ -668,7 +671,7 @@ const Index = () => {
           }
           // 如果返回里没有 URL，则回退到本地静态上传
           if (!imageUrlToSend) {
-            const localUp = await fetch('http://127.0.0.1:8788/api/upload', {
+            const localUp = await fetch(`${API_BASE_URL}/api/upload`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ dataUrl: uploadedImage })
@@ -705,7 +708,7 @@ const Index = () => {
 
       // 发起到本地代理服务
       // 注意：代理端口改为 8788，且使用 127.0.0.1 避免某些环境下 localhost 解析问题
-      const resp = await fetch('http://127.0.0.1:8788/api/coze/stream_run', {
+      const resp = await fetch(`${API_BASE_URL}/api/coze/stream_run`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -788,7 +791,7 @@ const Index = () => {
         };
         const filtered = urls.filter(isLikelyImage);
         if (filtered.length) {
-          const proxied = filtered.slice(0, 4).map(u => (/^https?:\/\/s\.coze\.cn\/t\//i.test(u) ? `http://127.0.0.1:8788/api/proxy_image?u=${encodeURIComponent(u)}` : u));
+          const proxied = filtered.slice(0, 4).map(u => (/^https?:\/\/s\.coze\.cn\/t\//i.test(u) ? `${API_BASE_URL}/api/proxy_image?u=${encodeURIComponent(u)}` : u));
           console.log('Workflow images (json, raw):', filtered);
           console.log('Workflow images (json, proxied):', proxied);
           finalImages = proxied;
@@ -835,7 +838,7 @@ const Index = () => {
                       };
                       const filtered = urls.filter(isLikelyImage);
                       if (filtered.length) {
-                        const proxied = filtered.slice(0, 4).map(u => (/^https?:\/\/s\.coze\.cn\/t\//i.test(u) ? `http://127.0.0.1:8788/api/proxy_image?u=${encodeURIComponent(u)}` : u));
+                        const proxied = filtered.slice(0, 4).map(u => (/^https?:\/\/s\.coze\.cn\/t\//i.test(u) ? `${API_BASE_URL}/api/proxy_image?u=${encodeURIComponent(u)}` : u));
                         console.log('Workflow images (from Done event):', proxied);
                         finalImages = proxied;
                         setGeneratedImages(finalImages);
@@ -892,7 +895,7 @@ const Index = () => {
             const filtered = urls.filter(isLikelyImage);
             if (filtered.length) {
               // 取前 4 张图
-              const proxied = filtered.slice(0, 4).map(u => (/^https?:\/\/s\.coze\.cn\/t\//i.test(u) ? `http://127.0.0.1:8788/api/proxy_image?u=${encodeURIComponent(u)}` : u));
+              const proxied = filtered.slice(0, 4).map(u => (/^https?:\/\/s\.coze\.cn\/t\//i.test(u) ? `${API_BASE_URL}/api/proxy_image?u=${encodeURIComponent(u)}` : u));
               console.log('Workflow images (sse, raw):', filtered);
               console.log('Workflow images (sse, proxied):', proxied);
               finalImages = proxied;
@@ -931,7 +934,7 @@ const Index = () => {
             };
             const filtered = urls.filter(isLikelyImage);
             if (filtered.length) {
-              const proxied = filtered.slice(0, 4).map(u => (/^https?:\/\/s\.coze\.cn\/t\//i.test(u) ? `http://127.0.0.1:8788/api/proxy_image?u=${encodeURIComponent(u)}` : u));
+              const proxied = filtered.slice(0, 4).map(u => (/^https?:\/\/s\.coze\.cn\/t\//i.test(u) ? `${API_BASE_URL}/api/proxy_image?u=${encodeURIComponent(u)}` : u));
               console.log('Workflow images (fallback, raw):', filtered);
               console.log('Workflow images (fallback, proxied):', proxied);
               finalImages = proxied;
