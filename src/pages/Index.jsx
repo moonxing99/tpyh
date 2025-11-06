@@ -12,7 +12,7 @@ import ProductPreview from '@/components/ImageEditor/ProductPreview';
 const avatarImg = import.meta.env.BASE_URL + '头像.png';
 
 // API 基础地址：开发环境使用本地服务器，生产环境使用环境变量
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8788';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://tpyh-gcjoid92c-moonxing99s-projects.vercel.app';
 
 const Index = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
