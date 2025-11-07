@@ -1,7 +1,8 @@
 // Vercel Serverless Function 入口
-// 直接导入并导出 server/index.js 的 Express app
-// Vercel 会自动识别并处理 Express app
+// 导入并重新导出 Express app
+// Vercel 的 @vercel/node 构建器会自动识别 Express app
 import app from '../server/index.js';
 
+// 直接导出 Express app，Vercel 会自动处理
 export default app;
 
